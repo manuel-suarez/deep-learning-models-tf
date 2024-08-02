@@ -1,4 +1,4 @@
-from unet_vgg19 import build_model
+from unet_resnet18 import build_model
 from keras.utils import plot_model
 
 model = build_model()
