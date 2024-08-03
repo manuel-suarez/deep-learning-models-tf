@@ -82,8 +82,13 @@ def build_model(input_shape=(256, 256, 1), classes=1):
     d1 = BatchNormalization()(d1)
     d1 = Activation('relu')(d1)
     # Final Layer
+    # Final Layer
     outputs = Conv2D(classes, (3, 3), activation='linear', padding='same')(d1)
-    outputs = Activation('relu')(outputs)
+    if classes == 1:
+        activation = 'sigmoid'
+    else:
+        activation = 'softmax'
+    outputs = Activation(activation)(outputs)
     # Model
     model = Model(inputs=[inputs], outputs=[outputs])
     return model
